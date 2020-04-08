@@ -31,24 +31,24 @@ geocodeUSCB <- function(Address,Street,City,State,Zip,
   if(SearchType == "address"){
 
     # Query the US Census Bureau's geocoding service.
-    r <- GET(url = urlAddress,
-             query = list(
-               street = Street,
-               city = City,
-               state = State,
-               zip = Zip,
-               benchmark = Benchmark
-             )
+    r <- httr::GET(url = urlAddress,
+                   query = list(
+                     street = Street,
+                     city = City,
+                     state = State,
+                     zip = Zip,
+                     benchmark = Benchmark
+                     )
     )
 
   } else if (SearchType == "onelineaddress"){
 
     # Query the US Census Bureau's geocoding service.
-    r <- GET(url = urlAddress,
-             query = list(
-               address = Address,
-               benchmark = Benchmark
-             )
+    r <- httr::GET(url = urlAddress,
+                   query = list(
+                     address = Address,
+                     benchmark = Benchmark
+                     )
     )
 
   } else if (SearchType != "address" | SearchType != "onelineaddress"){
@@ -59,10 +59,10 @@ geocodeUSCB <- function(Address,Street,City,State,Zip,
   }
 
   # Store content of the response as text.
-  c <- content(x = r, type = "text", encoding = "UTF-8")
+  c <- httr::content(x = r, type = "text", encoding = "UTF-8")
 
   # Read JSON structure of text into a list.
-  geoList <- fromJSON(txt = c)
+  geoList <- jsonlite::fromJSON(txt = c)
 
   # Assign key variables.
   lon <- geoList$result$addressMatches$coordinates$x[1]
