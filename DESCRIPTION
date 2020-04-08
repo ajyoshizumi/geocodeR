@@ -9,10 +9,7 @@ Authors@R:
 Description: This package provides functions for geocoding and reverse geocoding data. Functions leverage multiple different resources. The current version of this package is in development.
 License: GPL-2
 Encoding: UTF-8
-LazyData: false
-Depends:
-	httr (>= 1.4.1),
-	jsonlite (>= 1.6.1)
+LazyData: true
 Imports:
 	httr (>= 1.4.1),
 	jsonlite (>= 1.6.1)
